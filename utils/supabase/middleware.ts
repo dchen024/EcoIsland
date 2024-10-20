@@ -60,7 +60,7 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Define your protected routes
-  const protectedRoutes = ['/dashboard', '/profile', '/settings']; // TODO: add protected routes
+  const protectedRoutes = ['/dashboard', '/profile', '/settings', '/return']; // TODO: add protected routes
 
   // Check if the current route is a protected route
   const isProtectedRoute = protectedRoutes.some((route) =>
