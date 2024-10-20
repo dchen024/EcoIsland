@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/NavBar";
@@ -17,6 +18,7 @@ const ReturnPage = () => {
   const [scanSuccess, setScanSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const supabase = createClient();
+  const router = useRouter();
 
   const handleScan = async (err: any, result: any) => {
     if (result) {
@@ -57,6 +59,8 @@ const ReturnPage = () => {
 
         const data = await response.json();
         console.log("Transaction updated successfully:", data.message);
+
+        router.push("/dashboard");
       } catch (error) {
         setErrorMessage("An unexpected error occurred.");
         console.error("Error in handleScan:", error);

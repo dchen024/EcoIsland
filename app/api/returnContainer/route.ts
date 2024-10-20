@@ -39,10 +39,23 @@ export async function POST(req: Request) {
       );
     }
 
+    const { error: updateContainerError } = await supabase
+      .from('containers')
+      .update({ status: 'Returned' })
+      .eq('id', container_id);
+
+    if (updateContainerError) {
+      return NextResponse.json(
+        { message: 'Error updating container status', error: updateContainerError },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { message: "Transaction updated successfully!" },
+      { message: 'Transaction updated and container returned successfully!' },
       { status: 200 },
     );
+
   } catch (error) {
     return NextResponse.json(
       { message: "Unexpected error occurred", error: (error as Error).message },
