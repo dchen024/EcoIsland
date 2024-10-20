@@ -3,7 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { signout } from "@/lib/auth-actions";
 
 interface NavBarProps {
@@ -22,12 +25,16 @@ const blockNavigation: navigationProps[] = [
     href: "/dashboard",
   },
   {
-    name: "Redeem",
-    href: "/redeem",
-  },
-  {
     name: "Return",
     href: "/return",
+  },
+  {
+    name: "Vendor",
+    href: "/vendor",
+  },
+  {
+    name: "Admin",
+    href: "/admin",
   },
   {
     name: "Logout",
@@ -56,7 +63,9 @@ const navigationWithoutLogin: navigationProps[] = [
 
 const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const [toggle, setToggle] = React.useState(false);
-  const navigationArray = isLoggedIn ? [...sharedNavigation, ...blockNavigation] : [...sharedNavigation, ...navigationWithoutLogin];
+  const navigationArray = isLoggedIn
+    ? [...sharedNavigation, ...blockNavigation]
+    : [...sharedNavigation, ...navigationWithoutLogin];
   return (
     <nav
       className={`relative flex items-center justify-between px-5 py-5 md:mb-0 lg:mb-auto lg:justify-evenly ${toggle && !isLoggedIn && "mb-44"} ${toggle && isLoggedIn && "mb-64"}`}
@@ -74,7 +83,9 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         {navigationArray.map((item, index) => (
           <NavigationMenuItem key={item.name}>
             <Link href={item.href}>
-              <Button onClick={item.action} variant="ghost">{item.name}</Button>
+              <Button onClick={item.action} variant="ghost">
+                {item.name}
+              </Button>
             </Link>
           </NavigationMenuItem>
         ))}
