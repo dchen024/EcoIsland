@@ -49,13 +49,13 @@ export function DataTable<TData, TValue>({
   };
 
   return (
-    <div>
-      <Table>
+    <div className="w-full overflow-x-auto">
+      <Table className="min-w-full">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead key={header.id} className="p-2 text-sm">
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -73,9 +73,10 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="p-2 text-sm"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="p-2 text-sm">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -90,12 +91,15 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-end space-x-2 py-4">
+
+      {/* Pagination controls */}
+      <div className="flex flex-col items-center justify-center space-y-2 py-4 sm:flex-row sm:justify-end sm:space-x-2 sm:space-y-0">
         <Button
           variant="outline"
           size="sm"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          className="w-full sm:w-auto"
         >
           Previous
         </Button>
@@ -104,6 +108,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === pageCount}
+          className="w-full sm:w-auto"
         >
           Next
         </Button>
