@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "EcoIsland",
-  description: "",
+  description:
+    "EcoIsland is a sustainable platform designed for Governors Island, NYC, to track the usage of reusable food serviceware, helping reduce waste and foster environmentally friendly practices.",
 };
 
 export default function RootLayout({
