@@ -6,6 +6,7 @@ import LoginButton from "@/components/LoginLogoutButton";
 import NavBar from "@/components/NavBar";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -72,7 +73,7 @@ export default function Home() {
   return (
     <>
       <NavBar isLoggedIn={isLoggedIn} />
-      <main className="flex min-h-screen flex-col items-center justify-between bg-gray-50 p-24 dark:bg-gray-900">
+      <main className="flex min-h-screen flex-col items-center justify-between bg-gray-50 px-24 py-12 dark:bg-gray-900">
         {/* Hero */}
         <div className="z-10 w-full max-w-5xl text-center">
           <h1 className="mb-6 text-4xl font-bold">
@@ -82,7 +83,9 @@ export default function Home() {
             Join our mission to protect the environment by tracking your impact
             and earning rewards as you help reduce waste on Governors Island.
           </p>
-          <div className="mt-8"></div>
+          <div className="mt-8 flex justify-center">
+            <Image src="/earth.png" alt="earth" width={300} height={300} />
+          </div>
         </div>
 
         {/* Global Metric */}
