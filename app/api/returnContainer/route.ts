@@ -30,7 +30,28 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Error updating container transaction', error: insertError }, { status: 500 });
     }
 
-    return NextResponse.json({ message: 'Transaction updated successfully!' }, { status: 200 });
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('points')
+      .eq('id', user_id)
+      .single();
+
+    if (profileError || !profile) {
+      return NextResponse.json({ message: 'Error fetching user profile', error: profileError }, { status: 500 });
+    }
+
+    const newPoints = profile.points + 100;
+
+    const { error: updateError } = await supabase
+      .from('profiles')
+      .update({ points: newPoints })
+      .eq('id', user_id);
+
+    if (updateError) {
+      return NextResponse.json({ message: 'Error updating user points', error: updateError }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: 'Transaction and points updated successfully!' }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: 'Unexpected error occurred', error: error.message }, { status: 500 });
   }
