@@ -120,7 +120,7 @@ export default function Home() {
           {/* Leaderboard Button */}
           <div className="mt-12 flex justify-center">
             <Link href="/leaderboard">
-              <Button size="lg" className="bg-primary text-white">
+              <Button size="lg" className="text-white">
                 View Leaderboard
               </Button>
             </Link>
@@ -133,7 +133,7 @@ export default function Home() {
 
         {/* Features */}
         <div className="my-8 grid w-full max-w-5xl grid-cols-1 gap-8 lg:grid-cols-3">
-          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-[0_5px_15px_-3px_rgba(34,197,94,0.4)] dark:border-gray-700 dark:bg-gray-800">
             <h2 className="mb-3 text-2xl font-semibold">Track Your Impact</h2>
             <p>
               Keep an eye on your eco-friendly efforts with real-time metrics
@@ -142,7 +142,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-[0_5px_15px_-3px_rgba(34,197,94,0.4)] dark:border-gray-700 dark:bg-gray-800">
             <h2 className="mb-3 text-2xl font-semibold">Earn Rewards</h2>
             <p>
               Earn points each time you return a reusable container and unlock
@@ -150,7 +150,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-[0_5px_15px_-3px_rgba(34,197,94,0.4)] dark:border-gray-700 dark:bg-gray-800">
             <h2 className="mb-3 text-2xl font-semibold">Seamless Scanning</h2>
             <p>
               Our QR code system makes returning containers effortless, allowing
