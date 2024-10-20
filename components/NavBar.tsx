@@ -15,13 +15,12 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
-
   return (
     <nav className="border-b bg-white">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Project Name */}
         <div className="text-xl font-bold">
-          <Link href="/">MyApp</Link>
+          <Link href="/">EcoIsland</Link>
         </div>
 
         {/* Navigation Buttons */}
@@ -35,7 +34,9 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Button onClick={() => signout()} variant="ghost">Logout</Button>
+                  <Button onClick={() => signout()} variant="ghost">
+                    Logout
+                  </Button>
                 </NavigationMenuItem>
               </>
             ) : (

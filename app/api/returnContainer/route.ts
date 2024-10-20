@@ -30,6 +30,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Error updating container transaction', error: insertError }, { status: 500 });
     }
 
+    // Commenting out points reward
+    /*
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('points')
@@ -50,8 +52,9 @@ export async function POST(req: Request) {
     if (updateError) {
       return NextResponse.json({ message: 'Error updating user points', error: updateError }, { status: 500 });
     }
+    */
 
-    return NextResponse.json({ message: 'Transaction and points updated successfully!' }, { status: 200 });
+    return NextResponse.json({ message: 'Transaction updated successfully!' }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: 'Unexpected error occurred', error: error.message }, { status: 500 });
   }

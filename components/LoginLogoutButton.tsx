@@ -37,7 +37,7 @@ const LoginButton = () => {
         router.push("/login");
       }}
     >
-      Login
+      Get Started
     </Button>
   );
 };
