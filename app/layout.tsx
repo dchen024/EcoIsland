@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="earth.png" />
+      </head>
       <body className={cn("bg-background", inter.className)}>{children}</body>
     </html>
   );
