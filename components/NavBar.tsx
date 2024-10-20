@@ -8,12 +8,14 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
 } from "@/components/ui/navigation-menu";
+import { signout } from "@/lib/auth-actions";
 
 interface NavBarProps {
   isLoggedIn: boolean;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
+
   return (
     <nav className="border-b bg-white">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -33,7 +35,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Button variant="ghost">Logout</Button>
+                  <Button onClick={() => signout()} variant="ghost">Logout</Button>
                 </NavigationMenuItem>
               </>
             ) : (

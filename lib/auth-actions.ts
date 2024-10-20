@@ -54,6 +54,7 @@ export async function signup(formData: FormData) {
 }
 
 export async function signout() {
+  "use server"
   const supabase = createClient();
   const { error } = await supabase.auth.signOut();
   if (error) {
@@ -80,6 +81,5 @@ export async function signInWithGoogle() {
     console.log(error);
     redirect('/error');
   }
-
   redirect(data.url);
 }
