@@ -32,7 +32,7 @@ export default function LeaderBoardPage() {
   return (
     <>
       <NavBar isLoggedIn={isLoggedIn} />
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto px-20 py-4">
         <Leaderboard leaderboard={leaderboard} />
       </div>
     </>

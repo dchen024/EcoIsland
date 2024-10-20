@@ -20,25 +20,30 @@ export default function Leaderboard({
   leaderboard: LeaderBoard[];
 }) {
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Rank</TableHead>
-          <TableHead>Username</TableHead>
-          <TableHead>Boxes Returned</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {leaderboard
-          .sort((a, b) => b.score - a.score)
-          .map((user, index) => (
-            <TableRow key={user.id}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{user.username}</TableCell>
-              <TableCell>{user.score}</TableCell>
-            </TableRow>
-          ))}
-      </TableBody>
-    </Table>
+    <>
+      <div className="mb-4">
+        <h1 className="text-2xl font-bold">Leaderboard</h1>
+      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Rank</TableHead>
+            <TableHead>Username</TableHead>
+            <TableHead>Boxes Returned</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {leaderboard
+            .sort((a, b) => b.score - a.score)
+            .map((user, index) => (
+              <TableRow key={user.id}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{user.username}</TableCell>
+                <TableCell>{user.score}</TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </>
   );
 }
