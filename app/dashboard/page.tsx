@@ -141,7 +141,7 @@ const Dashboard: React.FC = () => {
         {/* Redeem Points */}
         <Card className="mb-6 p-8">
           <h2 className="mb-4 text-2xl font-bold">Redeem Points</h2>
-          <div className="flex justify-center gap-16">
+          <div className="flex flex-col justify-center gap-8 md:flex-row">
             <div>
               <h3 className="mb-4 text-xl font-bold">Donate to Charity:</h3>
               <div className="flex flex-col space-y-4">
