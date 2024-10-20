@@ -119,7 +119,7 @@ const Dashboard: React.FC = () => {
         <h2 className="mb-4 text-2xl font-bold">Hello, {userName}!</h2>
 
         {/* User Metrics */}
-        <Card className="mb-6 p-4">
+        <Card className="mb-6 p-8">
           <h2 className="mb-4 text-2xl font-bold">Your Metrics</h2>
           <div className="flex justify-between">
             <div>
@@ -127,13 +127,38 @@ const Dashboard: React.FC = () => {
               <p>{userMetrics.totalContainers}</p>
             </div>
             <div>
-              <p className="font-semibold">Points Accumulated:</p>
+              <p className="font-semibold">Current Points:</p>
               <p>{userMetrics.totalPoints}</p>
             </div>
             <div>
               <p className="font-semibold">CO₂ Saved (lbs):</p>
               {/* Specifically CO2, its around 3.3 lbs per container. */}
               <p>{(userMetrics.totalContainers * 3.3).toFixed(2)}</p>
+            </div>
+          </div>
+        </Card>
+
+        {/* Redeem Points */}
+        <Card className="mb-6 p-8">
+          <h2 className="mb-4 text-2xl font-bold">Redeem Points</h2>
+          <div className="flex justify-center gap-16">
+            <div>
+              <h3 className="mb-4 text-xl font-bold">Donate to Charity:</h3>
+              <div className="flex flex-col space-y-4">
+                <Button>Donate $1 (1000 points)</Button>
+                <Button>Donate $5 (5000 points)</Button>
+                <Button>Donate $10 (10,000 points)</Button>
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-4 text-xl font-bold">
+                Discount on Next Order:
+              </h3>
+              <div className="flex flex-col space-y-4">
+                <Button>Get $1 off (1000 points)</Button>
+                <Button>Get $5 off (5000 points)</Button>
+                <Button>Get $10 off (10,000 points)</Button>
+              </div>
             </div>
           </div>
         </Card>
@@ -161,7 +186,9 @@ const Dashboard: React.FC = () => {
         {/* Button to return more boxes */}
         <div className="mt-6">
           <Link href="/return" passHref>
-            <Button className="w-full">Return Container</Button>
+            <Button className="w-full" variant="secondary">
+              Return Container
+            </Button>
           </Link>
         </div>
       </div>
