@@ -1,36 +1,80 @@
-## Next.js + Supabase Auth Example
+# EcoIsland
 
-[Video Tutorial](https://youtu.be/WWwDL9G9xkU)
+EcoIsland is a sustainable platform designed for Governors Island, NYC, to track the usage of reusable food serviceware, helping reduce waste and foster environmentally friendly practices.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Technologies Used](#technologies-used)
+4. [Installation](#installation)
+5. [Usage](#usage)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+EcoIsland provides both customers and vendors with tools to manage and track reusable containers. It offers real-time data on the environmental impact of returning containers, user-specific metrics, and a loyalty points system.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Key Users:
 
-## Learn More
+- **Customers**: Track their impact, earn points for returning containers, and view recent container transactions.
+- **Vendors**: Activate containers and track their status through QR code scanning.
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **QR Code Scanning**: Track reusable containers by scanning QR codes.
+- **User Metrics**: View personal environmental impact and recent returns.
+- **Vendor Tools**: Activate and manage containers with QR codes.
+- **Real-Time Updates**: Track containers, users, and returns in real-time.
+- **Loyalty Program**: Earn points for returning containers and contributing to sustainability goals.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- **Frontend**:
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - shadcn
+- **Backend**:
+  - Node.js
+  - Supabase
+- **Authentication**: OAuth2 (Google) via Supabase
+- **Database**: Supabase
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To get started with EcoIsland locally, follow these steps:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-username/ecoisland.git
+   ```
+
+2. **Navigate into the project directory**:
+
+   ```bash
+   cd ecoisland
+   ```
+
+3. **Install dependencies: Make sure you have Node.js installed, then run**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Set up environment variables: Create a .env.local file in the root directory and add your environment variables**:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+5. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+- **Sign up/Login**: Create an account or log in using Google OAuth2.
+- **Scan QR Code**: Customers and vendors can scan container QR codes to track and manage returns.
+- **View Metrics**: Users can track their environmental impact and return history.
+- **Vendor Dashboard**: Vendors can activate and manage container statuses.
