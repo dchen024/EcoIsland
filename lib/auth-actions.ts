@@ -21,8 +21,8 @@ export async function login(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/dashboard", "layout"); // TODO: change this home page
-  redirect("/dashboard"); // TODO: change this home page
+  revalidatePath("/", "layout"); // TODO: change this home page
+  redirect("/"); // TODO: change this home page
 }
 
 export async function signup(formData: FormData) {
@@ -49,8 +49,8 @@ export async function signup(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/dashboard", "layout"); // TODO: change this home page
-  redirect("/dashboard"); // TODO: change this home page
+  revalidatePath("/", "layout"); // TODO: change this home page
+  redirect("/"); // TODO: change this home page
 }
 
 export async function signout() {
