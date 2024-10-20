@@ -25,17 +25,19 @@ export default function Leaderboard({
         <TableRow>
           <TableHead>Rank</TableHead>
           <TableHead>Username</TableHead>
-          <TableHead>Box Returned</TableHead>
+          <TableHead>Boxes Returned</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {leaderboard.sort((a, b) => b.score - a.score).map((user, index) => (
-          <TableRow key={user.id}>
-            <TableCell>{index + 1}</TableCell>
-            <TableCell>{user.username}</TableCell>
-            <TableCell>{user.score}</TableCell>
-          </TableRow>
-        ))}
+        {leaderboard
+          .sort((a, b) => b.score - a.score)
+          .map((user, index) => (
+            <TableRow key={user.id}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{user.username}</TableCell>
+              <TableCell>{user.score}</TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   );

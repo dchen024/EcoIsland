@@ -6,9 +6,9 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { container_id, borrower_id } = body;
+    const { container_id } = body;
 
-    if (!container_id || !borrower_id) {
+    if (!container_id) {
       return NextResponse.json(
         { message: "Invalid request parameters" },
         { status: 400 },
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     const { error: updateContainerError } = await supabase
       .from('containers')
-      .update({ status: 'Returned', borrower_id: borrower_id })
+      .update({ status: 'Active' })
       .eq('id', container_id);
 
     if (updateContainerError) {
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(
-      { message: 'Transaction updated and container returned successfully!' },
+      { message: 'Container activated successfully!' },
       { status: 200 },
     );
 
