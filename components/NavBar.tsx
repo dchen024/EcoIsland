@@ -63,9 +63,10 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const navigationArray = isLoggedIn
     ? [...sharedNavigation, ...blockNavigation]
     : [...sharedNavigation, ...navigationWithoutLogin];
+
   return (
     <nav
-      className={`relative flex items-center justify-between px-5 py-5 md:mb-0 lg:mb-auto lg:justify-evenly ${
+      className={`relative flex items-center justify-between py-5 md:mb-0 lg:mb-auto lg:justify-evenly ${
         toggle && !isLoggedIn && "mb-44"
       } ${toggle && isLoggedIn && "mb-64"} bg-green-500 text-white`}
     >
@@ -77,8 +78,8 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         </div>
       </div>
       <ul
-        className={`absolute top-20 mt-5 flex w-full flex-col items-center gap-2 md:relative md:top-auto md:mt-0 md:w-auto md:justify-center ${
-          toggle ? "block" : "hidden"
+        className={`absolute top-20 flex w-full flex-col items-center gap-2 md:relative md:top-auto md:mt-0 md:w-auto md:justify-center ${
+          toggle ? "block bg-green-500 text-white" : "hidden"
         } md:flex md:flex-row`}
       >
         {navigationArray.map((item) => (
