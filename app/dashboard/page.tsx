@@ -161,7 +161,7 @@ const Dashboard: React.FC = () => {
         {/* Button to return more boxes */}
         <div className="mt-6">
           <Link href="/return" passHref>
-            <Button className="w-full">Return More Boxes</Button>
+            <Button className="w-full">Return Container</Button>
           </Link>
         </div>
       </div>
