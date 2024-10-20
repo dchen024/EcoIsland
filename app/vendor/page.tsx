@@ -67,7 +67,7 @@ const ActivatePage = () => {
           <div className="mb-4 flex justify-center">
             <Button
               type="button"
-              variant="outline"
+              variant="default"
               onClick={() => {
                 setIsScanning(!isScanning);
                 setScanSuccess(false);
