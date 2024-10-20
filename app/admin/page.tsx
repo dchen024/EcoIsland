@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { revalidatePath } from "next/cache";
 import { DataTable } from "./data-table";
 import { columns, Container } from "./columns";
+import NavBar from "@/components/NavBar";
 
 // Server action to generate a new container
 async function generateContainer() {
@@ -89,18 +90,21 @@ export default async function AdminPage({
   }));
 
   return (
-    <div className="flex w-full flex-col items-center p-4">
-      <h1 className="mb-4 text-2xl font-bold">Admin Panel</h1>
-      <form action={generateContainer} className="mb-8">
-        <Button type="submit">Generate New Container</Button>
-      </form>
+    <>
+      <NavBar isLoggedIn={true} />
+      <div className="flex w-full flex-col items-center p-4">
+        <h1 className="mb-4 text-2xl font-bold">Admin Panel</h1>
+        <form action={generateContainer} className="mb-8">
+          <Button type="submit">Generate New Container</Button>
+        </form>
 
-      <h1 className="text-lg font-bold">Containers</h1>
-      <DataTable
-        columns={columns}
-        data={containersWithStatusChange}
-        pageCount={count ? Math.ceil(count / pageSize) : 0}
-      />
-    </div>
+        <h1 className="text-lg font-bold">Containers</h1>
+        <DataTable
+          columns={columns}
+          data={containersWithStatusChange}
+          pageCount={count ? Math.ceil(count / pageSize) : 0}
+        />
+      </div>
+    </>
   );
 }
