@@ -12,7 +12,7 @@ export const getleaderboard = async (): Promise<LeaderBoard[]> => {
     id, full_name,
     container_transactions(id, status)`,
     )
-    .eq("container_transactions.status", "returned");
+    .eq("container_transactions.status", "Returned");
 
   if (error) {
     console.error(error);
