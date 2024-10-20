@@ -3,10 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenuItem,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenuItem } from "@/components/ui/navigation-menu";
 import { signout } from "@/lib/auth-actions";
 
 interface NavBarProps {
@@ -68,11 +65,15 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
     : [...sharedNavigation, ...navigationWithoutLogin];
   return (
     <nav
-      className={`relative flex items-center justify-between px-5 py-5 md:mb-0 lg:mb-auto lg:justify-evenly ${toggle && !isLoggedIn && "mb-44"} ${toggle && isLoggedIn && "mb-64"}`}
+      className={`relative flex items-center justify-between px-5 py-5 md:mb-0 lg:mb-auto lg:justify-evenly ${
+        toggle && !isLoggedIn && "mb-44"
+      } ${toggle && isLoggedIn && "mb-64"} bg-green-500 text-white`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-xl font-bold">
-          <Link href="/">EcoIsland</Link>
+          <Link href="/" className="text-white">
+            EcoIsland
+          </Link>
         </div>
       </div>
       <ul
@@ -80,10 +81,14 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
           toggle ? "block" : "hidden"
         } md:flex md:flex-row`}
       >
-        {navigationArray.map((item, index) => (
+        {navigationArray.map((item) => (
           <NavigationMenuItem key={item.name}>
             <Link href={item.href}>
-              <Button onClick={item.action} variant="ghost">
+              <Button
+                onClick={item.action}
+                variant="ghost"
+                className="text-white hover:bg-green-400 hover:text-green-100"
+              >
                 {item.name}
               </Button>
             </Link>
@@ -91,7 +96,15 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         ))}
       </ul>
       <div className={`block md:hidden`} onClick={() => setToggle(!toggle)}>
-        {toggle ? <Button>Close Menu</Button> : <Button>Open Menu</Button>}
+        {toggle ? (
+          <Button className="bg-green-500 text-white hover:bg-green-400 hover:text-green-100">
+            Close Menu
+          </Button>
+        ) : (
+          <Button className="bg-green-500 text-white hover:bg-green-400 hover:text-green-100">
+            Open Menu
+          </Button>
+        )}
       </div>
     </nav>
   );
