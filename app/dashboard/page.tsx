@@ -1,9 +1,9 @@
-"use client"; // Add this at the top of your component
+"use client";
 
 import React, { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card"; // Using Shadcn Card component
-import { Button } from "@/components/ui/button"; // Using Shadcn Button component
-import NavBar from "@/components/Navbar"; // Import the NavBar component
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import NavBar from "@/components/NavBar";
 import Link from "next/link";
 
 interface Return {
