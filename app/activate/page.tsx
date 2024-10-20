@@ -13,7 +13,7 @@ const BarcodeScannerComponent = dynamic(
   { ssr: false },
 );
 
-const ReturnPage = () => {
+const ActivatePage = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [scanSuccess, setScanSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -28,25 +28,11 @@ const ReturnPage = () => {
       console.log("Scanned UUID:", scannedUUID);
 
       try {
-        const {
-          data: { session },
-          error: sessionError,
-        } = await supabase.auth.getSession();
-
-        if (sessionError || !session?.user) {
-          setErrorMessage("User is not authenticated.");
-          console.error("Session error or user not found:", sessionError);
-          return;
-        }
-
-        console.log("User ID:", session.user.id);
-
-        const response = await fetch(`/api/returnContainer`, {
+        const response = await fetch(`/api/activateContainer`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             container_id: scannedUUID,
-            borrower_id: session.user.id,
           }),
         });
 
@@ -58,9 +44,9 @@ const ReturnPage = () => {
         }
 
         const data = await response.json();
-        console.log("Transaction updated successfully:", data.message);
+        console.log("Container activated successfully:", data.message);
 
-        router.push("/dashboard");
+        router.push("/admin");
       } catch (error) {
         setErrorMessage("An unexpected error occurred.");
         console.error("Error in handleScan:", error);
@@ -75,7 +61,7 @@ const ReturnPage = () => {
       <div className="container mx-auto p-6">
         <Card className="mx-auto max-w-md p-6">
           <h2 className="mb-4 text-center text-2xl font-bold">
-            Return a Container
+            Activate a Container
           </h2>
 
           <div className="mb-4 flex justify-center">
@@ -120,4 +106,4 @@ const ReturnPage = () => {
   );
 };
 
-export default ReturnPage;
+export default ActivatePage;
