@@ -1,5 +1,5 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
@@ -36,7 +36,7 @@ export async function updateSession(request: NextRequest) {
         remove(name: string, options: CookieOptions) {
           request.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
           });
           response = NextResponse.next({
@@ -46,12 +46,12 @@ export async function updateSession(request: NextRequest) {
           });
           response.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
           });
         },
       },
-    }
+    },
   );
 
   // Check if the user is authenticated
@@ -60,19 +60,25 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Define your protected routes
-  const protectedRoutes = ['/dashboard', '/profile', '/settings', '/return']; // TODO: add protected routes
+  const protectedRoutes = [
+    "/dashboard",
+    "/profile",
+    "/settings",
+    "/return",
+    "/admin",
+  ]; // TODO: add protected routes
 
   // Check if the current route is a protected route
   const isProtectedRoute = protectedRoutes.some((route) =>
-    request.nextUrl.pathname.startsWith(route)
+    request.nextUrl.pathname.startsWith(route),
   );
 
   if (isProtectedRoute && !user) {
     // If it's a protected route and the user is not authenticated,
     // redirect to the login page
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/login';
-    redirectUrl.searchParams.set('redirectedFrom', request.nextUrl.pathname);
+    redirectUrl.pathname = "/login";
+    redirectUrl.searchParams.set("redirectedFrom", request.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
