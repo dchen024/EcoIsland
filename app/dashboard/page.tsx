@@ -5,41 +5,119 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/NavBar";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
-interface Return {
+interface ReturnItem {
   id: string;
   containerId: string;
   returnDate: string;
 }
 
-const Dashboard = () => {
-  const [userMetrics, setUserMetrics] = useState({
-    totalContainers: 10,
-    totalPoints: 500,
+interface UserMetrics {
+  totalPoints: number;
+  totalContainers: number;
+}
+
+const Dashboard: React.FC = () => {
+  const [userMetrics, setUserMetrics] = useState<UserMetrics>({
+    totalPoints: 0,
+    totalContainers: 0,
   });
 
-  const [recentReturns, setRecentReturns] = useState<Return[]>([
-    {
-      id: "1",
-      containerId: "12345",
-      returnDate: "2024-10-19",
-    },
-    {
-      id: "2",
-      containerId: "67890",
-      returnDate: "2024-10-20",
-    },
-  ]);
+  const [recentReturns, setRecentReturns] = useState<ReturnItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState<string>("");
+
+  const supabase = createClient();
 
   useEffect(() => {
-    // Fetch data here
-  }, []);
+    const fetchUserData = async () => {
+      try {
+        const {
+          data: { session },
+          error: sessionError,
+        } = await supabase.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        const user = session?.user;
+        if (!user) {
+          console.error("User is not authenticated");
+          return;
+        }
+
+        // Fetch user details
+        const { data: profileData, error: profileError } = await supabase
+          .from("profiles")
+          .select("points, full_name")
+          .eq("id", user.id)
+          .single();
+
+        if (profileError) throw profileError;
+
+        // Count total containers from container_transactions table
+        const { count: totalContainers, error: countError } = await supabase
+          .from("container_transactions")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", user.id);
+
+        if (countError) throw countError;
+
+        console.log("Profile Data:", profileData);
+        console.log("Total Containers:", totalContainers);
+
+        setUserMetrics({
+          totalPoints: profileData.points || 0,
+          totalContainers: totalContainers || 0,
+        });
+
+        setUserName(profileData.full_name || "User");
+
+        // Fetch recent return from container_transactions
+        const { data: returnData, error: returnError } = await supabase
+          .from("container_transactions")
+          .select("id, container_id, created_at")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(5);
+
+        if (returnError) throw returnError;
+
+        const formattedReturns = returnData.map((item) => ({
+          id: item.id,
+          containerId: item.container_id,
+          returnDate: item.created_at,
+        }));
+        setRecentReturns(formattedReturns);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [supabase]);
+
+  if (loading) {
+    return (
+      <>
+        <NavBar isLoggedIn={true} />
+        <div className="container mx-auto p-6">
+          <div>Loading...</div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       {/* NavBar */}
       <NavBar isLoggedIn={true} />
       <div className="container mx-auto p-6">
+        {/* User Greeting */}
+        <h2 className="mb-4 text-2xl font-bold">Hello, {userName}!</h2>
+
         {/* User Metrics */}
         <Card className="mb-6 p-4">
           <h2 className="mb-4 text-2xl font-bold">Your Metrics</h2>
@@ -53,35 +131,38 @@ const Dashboard = () => {
               <p>{userMetrics.totalPoints}</p>
             </div>
             <div>
-              <p className="font-semibold">CO2 Saved (kg):</p>
-              {/* Random calculation for now */}
-              <p>{userMetrics.totalContainers * 1.5}</p>
+              <p className="font-semibold">CO₂ Saved (lbs):</p>
+              {/* Specifically CO2, its around 3.3 lbs per container. */}
+              <p>{(userMetrics.totalContainers * 3.3).toFixed(2)}</p>
             </div>
           </div>
         </Card>
 
         {/* Recent Returns */}
         <h3 className="mb-4 text-xl font-bold">Recent Returns</h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {recentReturns.map((returnItem) => (
-            <Card key={returnItem.id} className="p-4">
-              <p>
-                <strong>Container ID:</strong> {returnItem.containerId}
-              </p>
-              <p>
-                <strong>Return Date:</strong>{" "}
-                {new Date(returnItem.returnDate).toLocaleDateString()}
-              </p>
-            </Card>
-          ))}
-        </div>
+        {recentReturns.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {recentReturns.map((returnItem) => (
+              <Card key={returnItem.id} className="p-4">
+                <p>
+                  <strong>Container ID:</strong> {returnItem.containerId}
+                </p>
+                <p>
+                  <strong>Return Date:</strong>{" "}
+                  {new Date(returnItem.returnDate).toLocaleDateString()}
+                </p>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <p>No recent returns found.</p>
+        )}
 
         {/* Button to return more boxes */}
         <div className="mt-6">
-          <Button className="w-full">
-            {/* For now just take to home page */}
-            <Link href="/">Return More Boxes</Link>
-          </Button>
+          <Link href="/return" passHref>
+            <Button className="w-full">Return More Boxes</Button>
+          </Link>
         </div>
       </div>
     </>
