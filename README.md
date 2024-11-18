@@ -1,6 +1,12 @@
 # EcoIsland
 
-EcoIsland is a sustainable platform designed for Governors Island, NYC, to track the usage of reusable food serviceware, helping reduce waste and foster environmentally friendly practices.
+EcoIsland is a sustainable platform designed for Governors Island, NYC, to track the usage of reusable food service ware, helping reduce waste and foster environmentally friendly practices.
+
+## Demo Video
+
+  <a href="https://youtu.be/y03QCVIFyu4">
+    <img src="https://img.youtube.com/vi/y03QCVIFyu4/0.jpg" alt="Quizify Demo Video" width="800">
+  </a>
 
 ## Table of Contents
 
