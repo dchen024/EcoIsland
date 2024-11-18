@@ -1,24 +1,24 @@
 # EcoIsland
 
-EcoIsland is a sustainable platform designed for Governors Island, NYC, to track the usage of reusable food service ware, helping reduce waste and foster environmentally friendly practices.
+### Fitch Group + Earth Matters Sustainability Hackathon NYC Fall 2024
+
+**Created by:** Daniel Chen, Wilson Liu, Bi Rong Liu, and Adam Elsayed
+
+![EcoIsland Home Page](ecoisland_homepage.png)
 
 ## Demo Video
 
   <a href="https://youtu.be/y03QCVIFyu4">
-    <img src="https://img.youtube.com/vi/y03QCVIFyu4/0.jpg" alt="Quizify Demo Video" width="800">
+    <img src="https://img.youtube.com/vi/y03QCVIFyu4/1.jpg" alt="Quizify Demo Video" width="800">
   </a>
 
-## Table of Contents
-
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Technologies Used](#technologies-used)
-4. [Installation](#installation)
-5. [Usage](#usage)
 
 ## Project Overview
 
 EcoIsland provides both customers and vendors with tools to manage and track reusable containers. It offers real-time data on the environmental impact of returning containers, user-specific metrics, and a loyalty points system.
+
+### Inspriation
+We were inspired by the global movement toward sustainability and reducing single-use plastics. Governors Island provided the perfect opportunity to promote reusable containers and reduce waste.
 
 ### Key Users:
 
@@ -45,6 +45,17 @@ EcoIsland provides both customers and vendors with tools to manage and track reu
   - Supabase
 - **Authentication**: OAuth2 (Google) via Supabase
 - **Database**: Supabase
+
+## App Preview
+
+### Admin Panel
+![EcoIsland Admin Panel](ecoisland_admin.png)
+
+### User Metrics
+![EcoIsland User Metrics](ecoisland_metrics.png)
+
+### Leaderboard
+![EcoIsland Leaderboard](ecoisland_leaderboard.png)
 
 ## Installation
 
